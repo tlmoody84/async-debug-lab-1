@@ -1,6 +1,12 @@
 document.getElementById("fetch-user").addEventListener("click", function () {
   fetch("https://randomuser.me/api/") // Question 1: Why does this fetch call fail?
     .then((data) => {
+      if (!response.ok) { // Check for successful response
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
       displayUser(data.results[0]); // Question 2: Why is data.results undefined?
     })
     .catch((error) => console.error("Fetch error:", error));
@@ -13,7 +19,7 @@ function displayUser(user) {
                            Email: ${user.email}`;
 }
 
-// Question 4: Why does this API call fail?  the URL is incorrect
+// Question 4: Why does this API call fail? the base URL is incorrect
 fetch("https://api.example.com/data")
   .then((response) => response.json())
   .catch((error) => {
