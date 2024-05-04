@@ -32,6 +32,7 @@ function fetchNews() {
     .then((response) => response.json())
     .then((articles) => {
       const container = document.getElementById("news-container");
+      container.innerHTML = "";
       // Question 5: Why do the article titles not appear on the screen?
       articles.forEach((article) => {
         const p = document.createElement("p");
