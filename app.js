@@ -1,5 +1,5 @@
 document.getElementById("fetch-user").addEventListener("click", function () {
-  fetch("https://randomuser.me/apii/") // Question 1: Why does this fetch call fail?
+  fetch("https://randomuser.me/api/") // Question 1: Why does this fetch call fail?
     .then((data) => {
       displayUser(data.results[0]); // Question 2: Why is data.results undefined?
     })
@@ -9,11 +9,11 @@ document.getElementById("fetch-user").addEventListener("click", function () {
 function displayUser(user) {
   const userInfoDiv = document.getElementById("user-info");
   // Question 3: Why isn't the user's name displaying correctly?
-  userInfoDiv.innerHTML = `Name: ${user.first} ${user.name}<br>
+  userInfoDiv.innerHTML = `Name: ${user.name}<br>
                            Email: ${user.email}`;
 }
 
-// Question 4: Why does this API call fail?
+// Question 4: Why does this API call fail?  the URL is incorrect
 fetch("https://api.example.com/data")
   .then((response) => response.json())
   .catch((error) => {
@@ -29,7 +29,7 @@ function fetchNews() {
       // Question 5: Why do the article titles not appear on the screen?
       articles.forEach((article) => {
         const p = document.createElement("p");
-        p.textContent = article.name;
+        p.textContent = article.title;
         container.appendChild(p);
       });
     })
