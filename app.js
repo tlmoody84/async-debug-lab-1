@@ -1,10 +1,10 @@
 document.getElementById("fetch-user").addEventListener("click", function () {
   fetch("https://randomuser.me/api/") // Question 1: Why does this fetch call fail?
     .then((data) => {
-      if (!response.ok) { // Check for successful response
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (!data.ok) { // Check for successful response
+        throw new Error(`HTTP error! status: ${data.status}`);
       }
-      return response.json();
+      return data.json();
     })
     .then((data) => {
       displayUser(data.results[0]); // Question 2: Why is data.results undefined?
@@ -15,7 +15,7 @@ document.getElementById("fetch-user").addEventListener("click", function () {
 function displayUser(user) {
   const userInfoDiv = document.getElementById("user-info");
   // Question 3: Why isn't the user's name displaying correctly?
-  userInfoDiv.innerHTML = `Name: ${user.name}<br>
+  userInfoDiv.innerHTML = `Name: ${user.name.first} ${user.name.last}<br>
                            Email: ${user.email}`;
 }
 
